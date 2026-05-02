@@ -2,16 +2,20 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+  base: "./", // ✅ VERY IMPORTANT FIX
+
   plugins: [
     react({
       include: '**/*.{js,jsx,ts,tsx}',
     }),
   ],
+
   esbuild: {
     jsx: 'automatic',
     loader: 'jsx',
     include: /src[\\/].*\.(js|jsx)$/,
   },
+
   server: {
     port: 5171,
     strictPort: false,
@@ -22,7 +26,8 @@ export default defineConfig({
       },
     },
   },
+
   build: {
-    outDir: 'build',
+    outDir: 'build', // ✅ you are using build folder (correct)
   },
 });
